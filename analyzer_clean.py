@@ -8,15 +8,19 @@ import sys
 from pandas_analysis import get_attributes_from_flow_list
 
 _FLOW_FIELDS = [
-    "ts",
-    "ip_protocol",
-    "state",
     "src_ip",
     "src_port",
     "dst_ip",
     "dst_port",
-    "src_tx",
-    "dst_tx",
+    "ip_protocol",
+    "l7_proto",
+    "in_bytes",
+    "out_bytes",
+    "in_pkts",
+    "out_pkts",
+    "tcp_flags",
+    "duration",
+    "label"
 ]
 
 
@@ -30,15 +34,19 @@ class Flow(collections.namedtuple("Flow", _FLOW_FIELDS)):
 
         Construct Flow instances from a CSV-representation of a flow.
         """
-        return Flow(ts=datetime.datetime.strptime(e[0], "%Y-%m-%d %H:%M:%S"),
-                    ip_protocol=e[1],
-                    state=e[2],
-                    src_ip=ipaddr.IPAddress(e[3]),
-                    src_port=int(e[4]),
-                    dst_ip=ipaddr.IPAddress(e[5]),
-                    dst_port=int(e[6]),
-                    src_tx=int(e[7]),
-                    dst_tx=int(e[8]))
+        return Flow(src_ip=ipaddr.IPAddress(e[0]),
+                    src_port=int(e[1]),
+                    dst_ip=ipaddr.IPAddress(e[2]),
+                    dst_port=int(e[3]),
+                    ip_protocol =int(e[4]),
+                    l7_proto=int(e[5]),
+                    in_bytes=int(e[6]),
+                    out_bytes = int(e[7]),
+                    in_pkts=int(e[8]),
+                    out_pkts=int(e[9]),
+                    tcp_flags=int(e[10]),
+                    duration=int(e[11]),
+                    label =int(e[12]))
 
 _ALERT_FIELDS = [
     "name",

@@ -1,4 +1,5 @@
-data.csv
+datasets/NF-CSE-CIC-IDS2018.csv
+datasets/NF-UQ-NIDS.csv
 .DS*
 .ipynb_checkpoints/
 __pycache__/
